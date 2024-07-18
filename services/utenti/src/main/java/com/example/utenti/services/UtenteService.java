@@ -1,8 +1,10 @@
 package com.example.utenti.services;
 
+import com.example.utenti.dto.IndirizzoRequest;
+import com.example.utenti.entities.Indirizzo;
 import com.example.utenti.entities.Utente;
-import com.example.utenti.entities.UtenteRequest;
-import com.example.utenti.entities.UtenteResponse;
+import com.example.utenti.dto.UtenteRequest;
+import com.example.utenti.dto.UtenteResponse;
 import com.example.utenti.exceptions.UtenteNotFoundException;
 import com.example.utenti.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class UtenteService {
     private UtenteRepository utenteRepository;
     @Autowired
     private UtenteMapper utenteMapper;
+    @Autowired
+    private IndirizzoService indirizzoService;
 
     public Utente getUtenteById (Long id){
         Optional<Utente> optionalUtente = utenteRepository.findById(id);
@@ -56,4 +60,26 @@ public class UtenteService {
         utenteRepository.deleteById(id);
     }
 
+    public Indirizzo addIndirizzo(IndirizzoRequest request) {
+        Indirizzo indirizzo = Indirizzo.builder()
+                .via(request.getVia())
+                .civico(request.getCivico())
+                .cap(request.getCap())
+                .comune(request.getComune())
+                .build();
+        indirizzoService.create(indirizzo);
+        Utente utente = getUtenteById(request.getIdUtente());
+        utente.getIndirizzi().add(indirizzo);
+        utenteRepository.save(utente);
+        return indirizzo;
+    }
+
+    public void deleteIndirizzo(Long idIndirizzo) {
+        indirizzoService.deleteById(idIndirizzo);
+    }
+
+    public List<Indirizzo> getIndirizziUtente(Long idUtente) {
+        Utente utente = getUtenteById(idUtente);
+        return utente.getIndirizzi();
+    }
 }

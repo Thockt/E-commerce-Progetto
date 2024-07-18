@@ -2,8 +2,8 @@ package com.example.utenti.services;
 
 import com.example.utenti.entities.Indirizzo;
 import com.example.utenti.entities.Utente;
-import com.example.utenti.entities.UtenteRequest;
-import com.example.utenti.entities.UtenteResponse;
+import com.example.utenti.dto.UtenteRequest;
+import com.example.utenti.dto.UtenteResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

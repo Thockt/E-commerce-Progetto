@@ -1,6 +1,5 @@
-package com.example.prodotti.entities;
+package com.example.prodotti.dto;
 
-import jakarta.persistence.Entity;
 import lombok.*;
 
 import java.util.List;

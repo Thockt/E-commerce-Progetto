@@ -1,5 +1,7 @@
 package com.example.prodotti.services;
 
+import com.example.prodotti.dto.ProdottoRequest;
+import com.example.prodotti.dto.ProdottoResponse;
 import com.example.prodotti.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

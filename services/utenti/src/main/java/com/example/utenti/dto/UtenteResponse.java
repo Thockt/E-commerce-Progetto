@@ -1,4 +1,4 @@
-package com.example.utenti.entities;
+package com.example.utenti.dto;
 
 import lombok.*;
 

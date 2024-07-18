@@ -19,7 +19,7 @@ public class Indirizzo {
     @Column(nullable = false)
     private Integer civico;
     @Column(nullable = false)
-    private Integer cap;
+    private String cap;
     @Column(nullable = false)
     private String comune;
 
