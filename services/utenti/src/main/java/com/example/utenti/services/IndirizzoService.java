@@ -36,6 +36,7 @@ public class IndirizzoService {
         oldIndirizzo.setCivico(newindirizzo.getCivico());
         oldIndirizzo.setCap(newindirizzo.getCap());
         oldIndirizzo.setComune(newindirizzo.getComune());
+        indirizzoRepository.save(oldIndirizzo);
         return oldIndirizzo;
     }
 

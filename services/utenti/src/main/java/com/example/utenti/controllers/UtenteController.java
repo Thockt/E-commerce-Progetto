@@ -1,7 +1,9 @@
 package com.example.utenti.controllers;
 
-import com.example.utenti.entities.UtenteRequest;
-import com.example.utenti.entities.UtenteResponse;
+import com.example.utenti.dto.IndirizzoRequest;
+import com.example.utenti.dto.UtenteRequest;
+import com.example.utenti.dto.UtenteResponse;
+import com.example.utenti.entities.Indirizzo;
 import com.example.utenti.handler.GenericResponse;
 import com.example.utenti.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +45,23 @@ public class UtenteController {
         utenteService.deleteById(id);
         return new ResponseEntity<>(new GenericResponse("Utente con id " + id + " eliminato correttamente!"), HttpStatus.OK);
     }
+
+    @GetMapping("/get_indirizzi/{id}")
+    public ResponseEntity<List<Indirizzo>> getIndirizziByUtenteId (@PathVariable Long id_utente) {
+        return new ResponseEntity<>(utenteService.getIndirizziUtente(id_utente), HttpStatus.OK);
+    }
+
+    @PutMapping("/add_indirizzo")
+    public ResponseEntity<Indirizzo> addIndirizzo(@RequestBody IndirizzoRequest request) {
+        return new ResponseEntity<>(utenteService.addIndirizzo(request), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete_indirizzo/{id}")
+    public ResponseEntity<GenericResponse> deleteIndirizzoById(@PathVariable Long id_Indirizzo) {
+        utenteService.deleteIndirizzo(id_Indirizzo);
+        return new ResponseEntity<>(new GenericResponse("Indirizzo con id " +id_Indirizzo+ " eliminato con successo!"), HttpStatus.OK);
+    }
+
+
 
 }
